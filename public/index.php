@@ -44,12 +44,19 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+use App\Models\Retangulo;
+use App\Models\Quadrado;
 
-$kernel = $app->make(Kernel::class);
+$retangulo = new Retangulo();
+$retangulo->setAltura(5);
+$retangulo->setLargura(10);
 
-$response = $kernel->handle(
-    $request = Request::capture()
-)->send();
+echo $retangulo->getArea();
 
-$kernel->terminate($request, $response);
+echo '<br/>';
+
+$quadrado = new Quadrado();
+$quadrado->setAltura(5);
+// $quadrado->setLargura(10);
+
+echo $quadrado->getArea();
