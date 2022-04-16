@@ -1,7 +1,12 @@
 <?php
-
+require_once(__DIR__.'/../app/Models/Poligono.php');
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+use app\Models\Poligono;
+use App\Models\Retangulo;
+use App\Models\Quadrado;
+use App\Models\RetanguloLSP;
+use App\Models\QuadradoLSP;
 
 define('LARAVEL_START', microtime(true));
 
@@ -44,8 +49,7 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
-use App\Models\Retangulo;
-use App\Models\Quadrado;
+
 
 $retangulo = new Retangulo();
 $retangulo->setAltura(5);
@@ -60,3 +64,26 @@ $quadrado->setAltura(5);
 // $quadrado->setLargura(10);
 
 echo $quadrado->getArea();
+
+echo '<br/>';
+
+//Gera erro
+$retangulo = new Quadrado();
+$retangulo->setAltura(5);
+$retangulo->setLargura(10);
+echo $retangulo->getArea();
+
+echo '<br/> LSP Retangulo <br/>';
+
+$poligono = new Poligono();
+$poligono->setForma(new RetanguloLSP());
+$poligono->getForma()->setAltura(5);
+$poligono->getForma()->setLargura(10);
+echo $poligono->getArea();
+
+echo '<br/> LSP Quadrado <br/>';
+
+$poligono = new Poligono();
+$poligono->setForma(new QuadradoLSP());
+$poligono->getForma()->setLargura(10);
+echo $poligono->getArea();
